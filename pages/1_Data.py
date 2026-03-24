@@ -20,15 +20,21 @@ else:
   os.environ['API_USGS_PAT'] = st.session_state['usgs_key']
 
 state = st.text_input("Ex New Mexico")
+st.session_state['us_state'] = state:
 
+if st.session_state['us_state'] != None:
 
 try:
-  NM_discharge, _ = waterdata.get_time_series_metadata(
-    state_name=state,
-    parameter_code="00060",
-    skip_geometry=True,
-  )
-  st.success(f'You have Selected {state}')
-  st.write(len(NM_discharge))
+   NM_discharge, _ = waterdata.get_time_series_metadata(
+       state_name=state,
+       parameter_code="00060",
+       skip_geometry=True,
+     )
+   if len(NM_discharge) == 0:
+      st.warning(f'You have Selected {state}, there are no records for this entry.')
+   if len(NM_discharge > 0:
+      st.info(f'You have selected {state}')
+
 except:
-  st.warning("Try entering the state again")
+   st.warning("Something Went Wrong")
+   
