@@ -93,7 +93,7 @@ if st.session_state['NM_search'] == 'ready':
         skip_geometry=True,
         )
         
-        st.info(f'We found {len(df_region)} "daily" dioscharge measurments in {region}')
+        st.info(f'We found {len(df_region)} "daily" discharge measurments in {region}')
         st.dataframe(df_region)
 
         st.download_button(
