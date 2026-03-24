@@ -103,6 +103,6 @@ if len(region_ids) > 0:
             mime="text/csv"
             )
 if len(region_ids) == 0:
-    st.error('No entrys were found. Try another search.)
+    st.error('No entrys were found. Try another search.')
         
     
