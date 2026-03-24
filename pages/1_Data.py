@@ -71,5 +71,5 @@ if st.session_state['NM_search'] != None:
     ]
 
     region_ids = region_sites["monitoring_location_id"].tolist()
-    st.write(f"Found {region} {len(pecos_ids)} sites")
+    st.write(f"Found {region} {len(region_ids)} sites")
     
