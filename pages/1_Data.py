@@ -81,6 +81,7 @@ if st.session_state['NM_search'] != None:
     if l + o == 2:
         st.info(f"We found {region} {len(region_ids)} sites they are bellow")
         st.dataframe(region_ids)
+        st.info('The next step can take a few moments to load')
 
         df_region, _ = waterdata.get_daily(
         monitoring_location_id=region_ids,
@@ -89,8 +90,15 @@ if st.session_state['NM_search'] != None:
         time="1910-01-01/..",
         skip_geometry=True,
         )
+        
+        st.info(f'We found {len(df_region)} "daily" dioscharge measurments in {region}')
         st.dataframe(df_region)
 
-        
+        st.download_button(
+            label="Download Daily Data",
+            data=df_region.to_csv(index=False),
+            file_name="discharge_locations.csv",
+            mime="text/csv"
+            )
         
     
