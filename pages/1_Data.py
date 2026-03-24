@@ -79,13 +79,8 @@ if st.session_state['NM_search'] == 'ready':
     ]
 
     region_ids = region_sites["monitoring_location_id"].tolist()
-    if len(region_ids) > 0:
-        o = 1
-    
-    else:   
-        o = 0
 
-    if l + o == 2:
+if len(region_ids) > 0:
         st.info(f"We found {region} {len(region_ids)} sites they are bellow")
         st.dataframe(region_ids)
         st.info('The next step can take a few moments to load')
