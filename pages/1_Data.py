@@ -5,6 +5,7 @@ import requests
 from dataretrieval import waterdata
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
+import geopandas as gpd
 
 st.title("Discharge Data")
 
@@ -45,7 +46,7 @@ if st.session_state['us_state']:
         NM_locations, _ = waterdata.get_monitoring_locations(
             state_name=state,
             site_type_code="ST",
-            skip_geometry=True,
+            skip_geometry=False,
         )
 
         NM_locations_discharge = NM_locations.loc[
