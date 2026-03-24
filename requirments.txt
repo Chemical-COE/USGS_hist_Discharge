@@ -1,0 +1,7 @@
+dataretrieval
+pandas
+streamlit
+plotly
+geopandas
+requests
+python-dateutil
