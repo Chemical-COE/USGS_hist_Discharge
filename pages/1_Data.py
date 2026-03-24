@@ -80,7 +80,7 @@ if st.session_state['NM_search'] == 'ready':
 
     region_ids = region_sites["monitoring_location_id"].tolist()
 
-if len(region_ids) > 0:
+    if len(region_ids) > 0:
         st.info(f"We found {region} {len(region_ids)} sites they are bellow")
         st.dataframe(region_ids)
         st.info('The next step can take a few moments to load')
@@ -102,7 +102,7 @@ if len(region_ids) > 0:
             file_name="discharge_locations.csv",
             mime="text/csv"
             )
-if len(region_ids) == 0:
-    st.info('No entrys currently found. Try another search.')
+    if len(region_ids) == 0:
+        st.info('No entrys currently found. Try another search.')
         
     
