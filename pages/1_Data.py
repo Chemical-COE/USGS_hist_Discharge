@@ -9,32 +9,27 @@ from dateutil.relativedelta import relativedelta
 st.title("Discharge Data")
 
 if 'us_state' not in st.session_state:
-   st.session_state['us_state'] = None
+    st.session_state['us_state'] = None
 
-if 'usgs_key' not in st.session_state:
-    st.session_state['usgs_key'] = None
-    st.warning('Please Enter Your API Key on the APP Page')
+if 'usgs_key' not in st.session_state or not st.session_state['usgs_key']:
+    st.warning('Please Enter Your API Key on the App Page')
     st.stop()
-
 else:
-  os.environ['API_USGS_PAT'] = st.session_state['usgs_key']
+    os.environ['API_USGS_PAT'] = st.session_state['usgs_key']
 
-state = st.text_input("Ex New Mexico")
-st.session_state['us_state'] = state:
+state = st.text_input("Enter a US State (Ex: New Mexico)")
+st.session_state['us_state'] = state
 
-if st.session_state['us_state'] != None:
-
-try:
-   NM_discharge, _ = waterdata.get_time_series_metadata(
-       state_name=state,
-       parameter_code="00060",
-       skip_geometry=True,
-     )
-   if len(NM_discharge) == 0:
-      st.warning(f'You have Selected {state}, there are no records for this entry.')
-   if len(NM_discharge > 0:
-      st.info(f'You have selected {state}')
-
-except:
-   st.warning("Something Went Wrong")
-   
+if st.session_state['us_state']:
+    try:
+        NM_discharge, _ = waterdata.get_time_series_metadata(
+            state_name=state,
+            parameter_code="00060",
+            skip_geometry=True,
+        )
+        if len(NM_discharge) == 0:
+            st.warning(f"No records found for '{state}' — check spelling")
+        else:
+            st.info(f"Found {len(NM_discharge)} timeseries in {state}")
+    except Exception as e:
+        st.warning("Something went wrong — check your state name")
