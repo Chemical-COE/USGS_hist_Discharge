@@ -102,5 +102,7 @@ if len(region_ids) > 0:
             file_name="discharge_locations.csv",
             mime="text/csv"
             )
+if len(region_ids) == 0:
+    st.error('No entrys were found. Try another search.)
         
     
