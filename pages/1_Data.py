@@ -65,6 +65,6 @@ region_sites = NM_locations_discharge.loc[
     NM_locations_discharge["monitoring_location_name"].str.contains(region_submit, case=False)
 ]
 
-region_ids = pecos_sites["monitoring_location_id"].tolist()
+region_ids = region_sites["monitoring_location_id"].tolist()
 print(f"Found {region} {len(pecos_ids)} sites")
     
