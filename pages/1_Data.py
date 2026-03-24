@@ -14,6 +14,7 @@ if 'us_state' not in st.session_state:
 if 'usgs_key' not in st.session_state:
     st.session_state['usgs_key'] = None
     st.warning('Please Enter Your API Key on the APP Page')
+    st.stop()
 
 else:
   os.environ['API_USGS_PAT'] = st.session_state['usgs_key']
