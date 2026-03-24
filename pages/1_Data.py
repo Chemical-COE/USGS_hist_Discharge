@@ -9,7 +9,7 @@ from dateutil.relativedelta import relativedelta
 st.title("Discharge Data")
 
 if 'us_state' not in st.session_state:
-  st.session_state['us_state'] = None
+   st.session_state['us_state'] = None
 
 if 'usgs_key' not in st.session_state:
     st.session_state['usgs_key'] = None
@@ -19,12 +19,14 @@ else:
   os.environ['API_USGS_PAT'] = st.session_state['usgs_key']
 
 state = st.text_input("Ex New Mexico")
+
+
 try:
   NM_discharge, _ = waterdata.get_time_series_metadata(
     state_name=state,
     parameter_code="00060",
     skip_geometry=True,
   )
-  st.sucess(f'You have Selected{state}')
+  st.success(f'You have Selected{state}')
 except:
   st.warning("Try entering the state again")
