@@ -64,6 +64,7 @@ if st.session_state['NM_search'] != None:
 
     st.write('Try to Refine Your Search')
     region = st.text_input("Enter a refining search (Ex: Pecos)")
+    l = 1
     region_submit = str.upper(region)
 
     region_sites = NM_locations_discharge.loc[
@@ -72,6 +73,12 @@ if st.session_state['NM_search'] != None:
 
     region_ids = region_sites["monitoring_location_id"].tolist()
     if len(region_ids) > 0:
+        o = 1
+    
+    else:   
+        o = 0
+
+    if l + o == 2:
         st.info(f"We found {region} {len(region_ids)} sites they are bellow")
         st.dataframe(region_ids)
 
