@@ -14,6 +14,8 @@ if 'search_data' not in st.session_state:
     st.session_state['search_data'] = None
 if 'NM_locations_discharge' not in st.session_state:
     st.session_state['NM_locations_discharge'] = None
+if 'NM_search' not in st.session_state:
+    st.session_state['NM_search'] = None
 
 if 'usgs_key' not in st.session_state or not st.session_state['usgs_key']:
     st.warning('Please Enter Your API Key on the App Page')
@@ -51,20 +53,23 @@ if st.session_state['us_state']:
         ]
 
         st.session_state['NM_locations_discharge'] = NM_locations_discharge
+        st.session_state['NM_search'] = 'ready'
         st.success(f"Found {len(NM_locations_discharge)} stream sites in {state}. You can proceed.")
 
     except Exception as e:
         st.warning(f"Something went wrong — check your state name. Error: {e}")
         st.stop()
 
-st.write('Try to Refine Your Search')
-region = st.text_input("Enter a refining search (Ex: Pecos)")
-region_submit = str.upper(region)
+if st.session_state['NM_search'] != None
 
-region_sites = NM_locations_discharge.loc[
+    st.write('Try to Refine Your Search')
+    region = st.text_input("Enter a refining search (Ex: Pecos)")
+    region_submit = str.upper(region)
+
+    region_sites = NM_locations_discharge.loc[
     NM_locations_discharge["monitoring_location_name"].str.contains(region_submit, case=False)
-]
+    ]
 
-region_ids = region_sites["monitoring_location_id"].tolist()
-print(f"Found {region} {len(pecos_ids)} sites")
+    region_ids = region_sites["monitoring_location_id"].tolist()
+    st.write(f"Found {region} {len(pecos_ids)} sites")
     
