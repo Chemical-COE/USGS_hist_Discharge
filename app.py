@@ -1,6 +1,5 @@
 import streamlit as st
 import os
-import geopandas as gpd
 import pandas as pd
 import requests
 from dataretrieval import waterdata
