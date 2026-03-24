@@ -34,7 +34,7 @@ if not st.session_state['usgs_key']:
 else:
     # rest of your app goes here
     st.success("API key set — ready to go!")
-    st.write("Please Proceed to the Data Page on the ribbon.")
+    st.write("Please Proceed to the Data page on the sidebar.")
     
     
 
