@@ -4,3 +4,4 @@ streamlit
 plotly
 requests
 python-dateutil
+geopandas
