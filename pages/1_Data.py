@@ -60,7 +60,7 @@ if st.session_state['us_state']:
         st.warning(f"Something went wrong — check your state name. Error: {e}")
         st.stop()
 
-if st.session_state['NM_search'] != None:
+if st.session_state['NM_search'] == 'ready':
 
     st.write('Try to Refine Your Search')
     region = st.text_input("Enter a refining search (Ex: Pecos)")
