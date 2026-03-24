@@ -11,6 +11,9 @@ st.title("Discharge Data")
 if 'us_state' not in st.session_state:
     st.session_state['us_state'] = None
 
+if 'search_data' not in st.session_state:
+    st.session_state['us_state'] = None
+
 if 'usgs_key' not in st.session_state or not st.session_state['usgs_key']:
     st.warning('Please Enter Your API Key on the App Page')
     st.stop()
@@ -27,9 +30,23 @@ if st.session_state['us_state']:
             parameter_code="00060",
             skip_geometry=True,
         )
+        
         if len(NM_discharge) == 0:
             st.warning(f"No records found for '{state}' — check spelling")
-            
+
+        if len(NM_discharge) > 0:
+            st.info('This step can take a while. Wait for the program to tell you to proceed.)
+            NM_locations, _ = waterdata.get_monitoring_locations(
+            state_name=state,
+            site_type_code="ST",
+            skip_geometry=True,
+            )
+            NM_locations_discharge = NM_locations.loc[
+            NM_locations["monitoring_location_id"].isin(
+            NM_discharge["monitoring_location_id"].unique().tolist()
+            )
+            ]
+            st.success('You can proceed.')
         else:
             st.info(f"Found {len(NM_discharge)} entries in {state}")
             st.stop()
@@ -38,17 +55,4 @@ if st.session_state['us_state']:
         st.warning("Something went wrong — check your state name")
         st.stop()
 
-    NM_locations, _ = waterdata.get_monitoring_locations(
-    state_name=state,
-    site_type_code="ST",
-    skip_geometry=True,
-    )
-    st.write(len(NM_locations))
-
-    NM_locations_discharge = NM_locations.loc[
-    NM_locations["monitoring_location_id"].isin(
-        NM_discharge["monitoring_location_id"].unique().tolist()
-    )
-    ]
-    st.write(len(NM_locations_discharge))
     
