@@ -29,7 +29,26 @@ if st.session_state['us_state']:
         )
         if len(NM_discharge) == 0:
             st.warning(f"No records found for '{state}' — check spelling")
+            
         else:
-            st.info(f"Found {len(NM_discharge)} timeseries in {state}")
+            st.info(f"Found {len(NM_discharge)} entries in {state}")
+            st.stop()
+            
     except Exception as e:
         st.warning("Something went wrong — check your state name")
+        st.stop()
+
+    NM_locations, _ = waterdata.get_monitoring_locations(
+    state_name=state,
+    site_type_code="ST",
+    skip_geometry=True,
+    )
+    st.write(len(NM_locations))
+
+    NM_locations_discharge = NM_locations.loc[
+    NM_locations["monitoring_location_id"].isin(
+        NM_discharge["monitoring_location_id"].unique().tolist()
+    )
+    ]
+    st.write(len(NM_locations_discharge))
+    
