@@ -25,6 +25,6 @@ try:
     parameter_code="00060",
     skip_geometry=True,
   )
-
+  st.sucess(f'You have Selected{state}')
 except:
   st.warning("Try entering the state again")
