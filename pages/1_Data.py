@@ -16,6 +16,8 @@ if 'NM_locations_discharge' not in st.session_state:
     st.session_state['NM_locations_discharge'] = None
 if 'NM_search' not in st.session_state:
     st.session_state['NM_search'] = None
+if st.session_state['run_button'] not in st.session_staet:
+    st.session_state['run_button'] = None
 
 if 'usgs_key' not in st.session_state or not st.session_state['usgs_key']:
     st.warning('Please Enter Your API Key on the App Page')
@@ -64,9 +66,14 @@ if st.session_state['NM_search'] == 'ready':
 
     st.write('Try to Refine Your Search')
     region = st.text_input("Enter a refining search (Ex: Pecos)")
-    l = 1
+    st.button = 
     region_submit = str.upper(region)
-
+    if st.st.session_state['run_button'] == None:
+        st.stop()
+    
+    if st.button('Run Analysis'):
+        st.session_state['run_button'] = 'RUN'
+    
     region_sites = NM_locations_discharge.loc[
     NM_locations_discharge["monitoring_location_name"].str.contains(region_submit, case=False)
     ]
