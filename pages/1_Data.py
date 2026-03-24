@@ -29,5 +29,6 @@ try:
     skip_geometry=True,
   )
   st.success(f'You have Selected {state}')
+  st.write(len(NM_discharge))
 except:
   st.warning("Try entering the state again")
