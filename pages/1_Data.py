@@ -72,6 +72,18 @@ if st.session_state['NM_search'] != None:
 
     region_ids = region_sites["monitoring_location_id"].tolist()
     if len(region_ids) > 0:
-        st.info(f"Found {region} {len(region_ids)} sites")
+        st.info(f"We found {region} {len(region_ids)} sites they are bellow")
         st.dataframe(region_ids)
+
+        df_region, _ = waterdata.get_daily(
+        monitoring_location_id=region_ids,
+        parameter_code="00060",
+        statistic_id="00003",
+        time="1910-01-01/..",
+        skip_geometry=True,
+        )
+        st.dataframe(df_region)
+
+        
+        
     
