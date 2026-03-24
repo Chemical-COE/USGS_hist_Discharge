@@ -10,9 +10,10 @@ st.title("Discharge Data")
 
 if 'us_state' not in st.session_state:
     st.session_state['us_state'] = None
-
 if 'search_data' not in st.session_state:
-    st.session_state['us_state'] = None
+    st.session_state['search_data'] = None
+if 'NM_locations_discharge' not in st.session_state:
+    st.session_state['NM_locations_discharge'] = None
 
 if 'usgs_key' not in st.session_state or not st.session_state['usgs_key']:
     st.warning('Please Enter Your API Key on the App Page')
@@ -30,29 +31,30 @@ if st.session_state['us_state']:
             parameter_code="00060",
             skip_geometry=True,
         )
-        
+
         if len(NM_discharge) == 0:
             st.warning(f"No records found for '{state}' — check spelling")
+            st.stop()
 
-        if len(NM_discharge) > 0:
-            st.info('This step can take a while. Wait for the program to tell you to proceed.)
-            NM_locations, _ = waterdata.get_monitoring_locations(
+        st.info("This step can take a while. Wait for the program to tell you to proceed.")
+
+        NM_locations, _ = waterdata.get_monitoring_locations(
             state_name=state,
             site_type_code="ST",
             skip_geometry=True,
-            )
-            NM_locations_discharge = NM_locations.loc[
+        )
+
+        NM_locations_discharge = NM_locations.loc[
             NM_locations["monitoring_location_id"].isin(
-            NM_discharge["monitoring_location_id"].unique().tolist()
+                NM_discharge["monitoring_location_id"].unique().tolist()
             )
-            ]
-            st.success('You can proceed.')
-        else:
-            st.info(f"Found {len(NM_discharge)} entries in {state}")
-            st.stop()
-            
+        ]
+
+        st.session_state['NM_locations_discharge'] = NM_locations_discharge
+        st.success(f"Found {len(NM_locations_discharge)} stream sites in {state}. You can proceed.")
+
     except Exception as e:
-        st.warning("Something went wrong — check your state name")
+        st.warning(f"Something went wrong — check your state name. Error: {e}")
         st.stop()
 
     
