@@ -57,4 +57,14 @@ if st.session_state['us_state']:
         st.warning(f"Something went wrong — check your state name. Error: {e}")
         st.stop()
 
+st.write('Try to Refine Your Search')
+region = st.text_input("Enter a refining search (Ex: Pecos)")
+region_submit = str.upper(region)
+
+region_sites = NM_locations_discharge.loc[
+    NM_locations_discharge["monitoring_location_name"].str.contains(region_submit, case=False)
+]
+
+region_ids = pecos_sites["monitoring_location_id"].tolist()
+print(f"Found {region} {len(pecos_ids)} sites")
     
