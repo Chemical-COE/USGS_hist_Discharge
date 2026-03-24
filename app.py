@@ -6,6 +6,8 @@ from dataretrieval import waterdata
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
+st.title("Simplified USGS Discharge Portal :)")
+
 if 'usgs_key' not in st.session_state:
     st.session_state['usgs_key'] = None
 
@@ -32,6 +34,7 @@ if not st.session_state['usgs_key']:
 else:
     # rest of your app goes here
     st.success("API key set — ready to go!")
+    st.write("Please Proceed to the Data Page on the ribbon.")
     
     
 
