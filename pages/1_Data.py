@@ -28,7 +28,7 @@ if 'usgs_key' not in st.session_state or not st.session_state['usgs_key']:
 else:
     os.environ['API_USGS_PAT'] = st.session_state['usgs_key']
 
-st.info('Python a demo/docs for the water data api can be found at the link bellow.')
+st.info('Python a demo/docs for the water data api can be found at the link bellow')
 st.link_button('Go to GitHub dataretrieval-python "waterdata" demo.', 'https://github.com/DOI-USGS/dataretrieval-python/blob/main/demos/WaterData_demo.ipynb')
 state = st.text_input("Enter a US State (Ex: New Mexico)")
 st.session_state['us_state'] = state
