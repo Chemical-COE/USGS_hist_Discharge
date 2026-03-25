@@ -1,3 +1,4 @@
+import streamlit.components.v1 as components
 import streamlit as st
 import os
 import pandas as pd
@@ -84,7 +85,7 @@ if st.session_state['NM_search'] == 'ready':
     if len(region_ids) > 0:
         st.info(f"We found {region} {len(region_ids)} sites they are bellow")
         st.dataframe(region_sites)
-        region_sites[
+        m = region_sites[
             ["geometry", "monitoring_location_id", "monitoring_location_name", "hydrologic_unit_code"]
             ].set_crs(crs="WGS84").explore(
                 column="monitoring_location_id",
@@ -93,6 +94,7 @@ if st.session_state['NM_search'] == 'ready':
                 legend=True,
                 tiles="CartoDB positron"
                 )
+        components.html(m._repr_html_(), height=500)
         st.info('The next step can take a few moments to load')
 
         df_region, _ = waterdata.get_daily(
