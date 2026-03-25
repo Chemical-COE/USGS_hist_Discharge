@@ -107,7 +107,7 @@ if st.session_state['NM_search'] == 'ready':
         #color_map
         zoom=6,
         height=500,
-        mapbox_style="carto-positron"
+        map_style="satellite-streets"
                 )
 
         st.plotly_chart(fig)
