@@ -94,12 +94,13 @@ if st.session_state['NM_search'] == 'ready':
         hover_name="monitoring_location_name",
         hover_data=["monitoring_location_id", "hydrologic_unit_code"],
         color="monitoring_location_name",
-        color_discrete_sequence=px.colors.qualitative.Plotly,
+        #color_discrete_sequence=px.colors.qualitative.Plotly,
         zoom=6,
         height=700,
         map_style="satellite-streets"
                 )
-
+        
+        fig.update_traces(marker=dict(color="#1a9bd6", size=10))
         st.plotly_chart(fig)
         st.info('The next step can take a few moments to load')
 
