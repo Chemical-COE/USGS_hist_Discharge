@@ -128,7 +128,7 @@ if st.session_state['NM_search'] == 'ready':
         .groupby(['monitoring_location_id', 'time'])['value']
         .mean()
         .reset_index()
-        .rename(columns={'time': 'year', 'value': 'discharge'})
+        .rename(columns={'time': 'year', 'value': 'discharge (ft^3/s)'})
         )
 
         st.dataframe(annual_data)
