@@ -94,7 +94,7 @@ if st.session_state['NM_search'] == 'ready':
         hover_name="monitoring_location_name",
         hover_data=["monitoring_location_id", "hydrologic_unit_code"],
         color="monitoring_location_name",
-        color_continuous_scale = px.colors.sequential.Plasma,
+        color_discrete_sequence=px.colors.qualitative.Plotly,
         zoom=6,
         height=700,
         map_style="satellite-streets"
