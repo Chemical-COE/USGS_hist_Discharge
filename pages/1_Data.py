@@ -96,7 +96,7 @@ if st.session_state['NM_search'] == 'ready':
         color="monitoring_location_name",
         #color_map
         zoom=6,
-        #height=500,
+        height=700,
         map_style="satellite-streets"
                 )
 
