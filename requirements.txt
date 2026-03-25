@@ -5,3 +5,5 @@ plotly
 requests
 python-dateutil
 geopandas
+folium
+mapclassify
