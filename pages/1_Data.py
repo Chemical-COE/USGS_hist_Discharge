@@ -86,16 +86,6 @@ if st.session_state['NM_search'] == 'ready':
     if len(region_ids) > 0:
         st.info(f"We found {region} {len(region_ids)} sites they are bellow")
         st.dataframe(region_sites)
-        m = region_sites[
-            ["geometry", "monitoring_location_id", "monitoring_location_name", "hydrologic_unit_code"]
-            ].set_crs(crs="WGS84").explore(
-                column="monitoring_location_id",
-                cmap="YlOrRd",
-                scheme=None,
-                legend=True,
-                tiles="CartoDB positron"
-                )
-        components.html(m._repr_html_(), height=500)
         
         fig = px.scatter_map(
         region_sites,
@@ -106,7 +96,7 @@ if st.session_state['NM_search'] == 'ready':
         color="monitoring_location_name",
         #color_map
         zoom=6,
-        height=500,
+        #height=500,
         map_style="satellite-streets"
                 )
 
