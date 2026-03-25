@@ -92,7 +92,7 @@ if st.session_state['NM_search'] == 'ready':
         lat=region_sites.geometry.y,
         lon=region_sites.geometry.x,
         hover_name="monitoring_location_name",
-        hover_data=["monitoring_location_id", "hydrologic_unit_code"],
+        hover_data=["monitoring_location_id", "hydrologic_unit_code", 'site_type', 'drainage_area'],
         color="monitoring_location_name",
         #color_discrete_sequence=px.colors.qualitative.Plotly,
         zoom=6,
