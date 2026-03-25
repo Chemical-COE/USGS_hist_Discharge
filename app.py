@@ -2,6 +2,9 @@ import streamlit as st
 import os
 import pandas as pd
 import requests
+import folium
+import geopandas
+import mapclassify
 from dataretrieval import waterdata
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
