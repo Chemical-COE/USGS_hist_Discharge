@@ -84,7 +84,7 @@ if st.session_state['NM_search'] == 'ready':
     if len(region_ids) > 0:
         st.info(f"We found {region} {len(region_ids)} sites they are bellow")
         st.dataframe(region_sites)
-        M_river_sites[
+        NM_river_sites[
             ["geometry", "monitoring_location_id", "monitoring_location_name", "hydrologic_unit_code", "drainage_area"]
             ].set_crs(crs="WGS84").explore(
                 column="monitoring_location_id",
