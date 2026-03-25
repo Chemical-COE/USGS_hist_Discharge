@@ -121,6 +121,11 @@ if st.session_state['NM_search'] == 'ready':
             file_name="discharge_locations.csv",
             mime="text/csv"
             )
+        df_region['time'] = df_region['time'].astype(str)
+        df_region['time'] = df_region['time'].str.split('-')[0] 
+        annual_data = df_region.group_by(['monitoring_location_number', 'time' ])['mean'].reset_index()
+        st.dataframe(annual_data)
+    
     if len(region_ids) == 0:
         st.info('No entrys currently found. Try another search.')
         
