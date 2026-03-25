@@ -8,7 +8,7 @@ import mapclassify
 from dataretrieval import waterdata
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
-import matplotlib.pyplt as plt
+import matplotlib as plt
 
 st.title("Simplified USGS Discharge Portal :)")
 
