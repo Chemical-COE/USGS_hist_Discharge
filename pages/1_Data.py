@@ -130,7 +130,7 @@ if st.session_state['NM_search'] == 'ready':
         .reset_index()
         .rename(columns={'time': 'year', 'value': 'discharge (ft^3/s)'})
         )
-
+        st.info('The DataFrame Below contains mean discharge grouped by year and USGS Gage')
         st.dataframe(annual_data)
     
     if len(region_ids) == 0:
