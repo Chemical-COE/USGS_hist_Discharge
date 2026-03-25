@@ -83,7 +83,7 @@ if st.session_state['NM_search'] == 'ready':
 
     if len(region_ids) > 0:
         st.info(f"We found {region} {len(region_ids)} sites they are bellow")
-        st.dataframe(region_ids)
+        st.dataframe(region_sites)
         st.info('The next step can take a few moments to load')
 
         df_region, _ = waterdata.get_daily(
