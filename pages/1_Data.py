@@ -97,13 +97,14 @@ if st.session_state['NM_search'] == 'ready':
                 )
         components.html(m._repr_html_(), height=500)
         
-        fig = px.scatter_mapbox(
+        fig = px.scatter_map(
         region_sites,
         lat=region_sites.geometry.y,
         lon=region_sites.geometry.x,
         hover_name="monitoring_location_name",
         hover_data=["monitoring_location_id", "hydrologic_unit_code"],
         color="monitoring_location_name",
+        color_map
         zoom=6,
         height=500,
         mapbox_style="carto-positron"
