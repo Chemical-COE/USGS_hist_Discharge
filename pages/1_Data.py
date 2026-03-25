@@ -109,7 +109,7 @@ if st.session_state['NM_search'] == 'ready':
         mapbox_style="carto-positron"
                 )
 
-st.plotly_chart(fig)
+        st.plotly_chart(fig)
         st.info('The next step can take a few moments to load')
 
         df_region, _ = waterdata.get_daily(
