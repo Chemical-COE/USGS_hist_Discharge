@@ -84,7 +84,7 @@ if st.session_state['NM_search'] == 'ready':
     region_ids = region_sites["monitoring_location_id"].tolist()
 
     if len(region_ids) > 0:
-        st.info(f"We found {region} {len(region_ids)} sites they are bellow")
+        st.info(f"We found {region} {len(region_ids)} sites their associated metadata is bellow.")
         st.dataframe(region_sites)
         
         fig = px.scatter_map(
