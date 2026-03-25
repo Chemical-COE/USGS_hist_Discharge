@@ -104,7 +104,7 @@ if st.session_state['NM_search'] == 'ready':
         hover_name="monitoring_location_name",
         hover_data=["monitoring_location_id", "hydrologic_unit_code"],
         color="monitoring_location_name",
-        color_map
+        #color_map
         zoom=6,
         height=500,
         mapbox_style="carto-positron"
