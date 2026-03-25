@@ -3,6 +3,7 @@ import streamlit as st
 import os
 import pandas as pd
 import requests
+import plotly.express as px
 from dataretrieval import waterdata
 from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
@@ -95,6 +96,20 @@ if st.session_state['NM_search'] == 'ready':
                 tiles="CartoDB positron"
                 )
         components.html(m._repr_html_(), height=500)
+        
+        fig = px.scatter_mapbox(
+        region_sites,
+        lat=region_sites.geometry.y,
+        lon=region_sites.geometry.x,
+        hover_name="monitoring_location_name",
+        hover_data=["monitoring_location_id", "hydrologic_unit_code"],
+        color="monitoring_location_name",
+        zoom=6,
+        height=500,
+        mapbox_style="carto-positron"
+                )
+
+st.plotly_chart(fig)
         st.info('The next step can take a few moments to load')
 
         df_region, _ = waterdata.get_daily(
