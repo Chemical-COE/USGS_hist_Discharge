@@ -131,7 +131,7 @@ if st.session_state['NM_search'] == 'ready':
         .rename(columns={'time': 'year', 'value': 'discharge'})
         )
 
-st.dataframe(annual_data)
+        st.dataframe(annual_data)
     
     if len(region_ids) == 0:
         st.info('No entrys currently found. Try another search.')
