@@ -37,7 +37,7 @@ if st.session_state['us_state']:
     try:
         NM_discharge, _ = waterdata.get_time_series_metadata(
             state_name=state,
-            parameter_code="00060",
+            parameter_code="00065",
             skip_geometry=True,
         )
 
