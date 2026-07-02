@@ -108,7 +108,7 @@ if st.session_state['NM_search'] == 'ready':
 
         df_region, _ = waterdata.get_daily(
         monitoring_location_id=region_ids,
-        parameter_code="00060",
+        parameter_code="00065",
         statistic_id="00003",
         time="1910-01-01/..",
         skip_geometry=True,
