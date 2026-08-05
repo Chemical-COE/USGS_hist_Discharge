@@ -31,10 +31,10 @@ end_date = st.text_input("End Date", "2026-01-01")
 st.write("The current end date is:", end_date)
 
 
-filtered_df = discharge_data[discharge_data['time'].between(start_date, end_date)].copy()
-st.dataframe(filtered_df)
 
+filtered_df = discharge_data[discharge_data['time'].between(start_date, end_date)].copy()
 st.info('Downlad your data here:')
+st.dataframe(filtered_df)
 st.download_button(
             label="Download Filtered Data",
             data=filtered_df.to_csv(index=False),
