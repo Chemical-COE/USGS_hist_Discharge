@@ -34,9 +34,17 @@ st.write("The current end date is:", end_date)
 filtered_df = discharge_data[discharge_data['time'].between(start_date, end_date)].copy()
 st.dataframe(filtered_df)
 
-st.info('Select the gages you would like to make a hydrograph.')
+st.info('Downlad your data here:')
+st.download_button(
+            label="Download Filtered Data",
+            data=filtered_df.to_csv(index=False),
+            file_name="discharge_locations.csv",
+            mime="text/csv"
+            )
+
+st.info('To select the gages you would like to make a hydrograph, you cam do the following:')
 st.write('You can manually turn on and of any gage by selecting it in the legend to the right.')
-st.write('You can Double click the Legend on the right to clear all the gages.')
+st.write('You can double click the legend on the right to clear all the gages.')
 
 # df Columns
 # Index(['time_series_id', 'monitoring_location_id', 'parameter_code',
