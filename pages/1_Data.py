@@ -21,6 +21,8 @@ if 'NM_search' not in st.session_state:
     st.session_state['NM_search'] = None
 if 'run_button' not in st.session_state:
     st.session_state['run_button'] = None
+if 'discharge_data' not in st.session_state:
+    st.session_state['discharge_data'] = None
 
 if 'usgs_key' not in st.session_state or not st.session_state['usgs_key']:
     st.warning('Please Enter Your API Key on the App Page')
@@ -124,6 +126,8 @@ if st.session_state['NM_search'] == 'ready':
             mime="text/csv"
             )
         df_region['time'] = pd.to_datetime(df_region['time']).dt.year
+
+        st.session_state['discharge_data'] = df_region
 
         annual_data = (
         df_region
