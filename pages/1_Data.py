@@ -34,6 +34,7 @@ st.info('Python a demo/docs for the water data api can be found at the link bell
 st.link_button('Go to GitHub dataretrieval-python "waterdata" demo.', 'https://github.com/DOI-USGS/dataretrieval-python/blob/main/demos/WaterData_demo.ipynb')
 state = st.text_input("Enter a US State (Ex: New Mexico)")
 st.session_state['us_state'] = state
+st.info("This step can take a while. Wait for the program to tell you to proceed.")
 
 if st.session_state['us_state']:
     try:
@@ -46,8 +47,6 @@ if st.session_state['us_state']:
         if len(NM_discharge) == 0:
             st.warning(f"No records found for '{state}' — check spelling")
             st.stop()
-
-        st.info("This step can take a while. Wait for the program to tell you to proceed.")
 
         NM_locations, _ = waterdata.get_monitoring_locations(
             state_name=state,
@@ -125,13 +124,16 @@ if st.session_state['NM_search'] == 'ready':
             file_name="discharge_locations.csv",
             mime="text/csv"
             )
-        df_region['time'] = pd.to_datetime(df_region['time']).dt.year
 
         st.session_state['discharge_data'] = df_region
 
+        df_region_annual = df_region.copy()
+        # This gets used to make the group by object (annual)
+        df_region_annual['time_year'] = pd.to_datetime(df_region_annual['time']).dt.year
+
         annual_data = (
-        df_region
-        .groupby(['monitoring_location_id', 'time'])['value']
+        df_region_annual
+        .groupby(['monitoring_location_id', 'time_year'])['value']
         .mean()
         .reset_index()
         .rename(columns={'time': 'year', 'value': 'discharge (ft^3/s)'})
