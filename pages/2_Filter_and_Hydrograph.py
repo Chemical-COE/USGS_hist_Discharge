@@ -27,7 +27,7 @@ st.write('Make sure to use the format yyyy-mm-dd')
 start_date = st.text_input("Start Date", "2020-01-01")
 st.write("The current start date is:", start_date)
 
-end_date = st.text_input("End Date", "2023-01-01")
+end_date = st.text_input("End Date", "2026-01-01")
 st.write("The current end date is:", end_date)
 
 
