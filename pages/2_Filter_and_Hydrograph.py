@@ -61,6 +61,8 @@ fig = px.scatter(
     title='River Hydrograph', # Add A Title. :D
     #markers=True
 )
+fig.update_layout(xaxis_title = 'Day of Year', yaxis_title = 'Discharge (cfs)')
+
 st.plotly_chart(fig)
 
 fig_log = px.scatter(
@@ -72,7 +74,7 @@ fig_log = px.scatter(
     title='River Hydrograph Log Scaled', # Add A Title. :D
     #markers=True
 )
-
+fig.update_layout(xaxis_title = 'Day of Year', yaxis_title = 'Discharge (cfs)')
 fig_log.update_layout(yaxis_type="log")
 st.plotly_chart(fig_log)
 
